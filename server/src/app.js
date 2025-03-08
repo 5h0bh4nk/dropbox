@@ -11,7 +11,11 @@ connectDB();
 
 const app = express();
 
-app.use(cors());
+let corsOptions = {
+  origin: ['https://dropbox-client.onrender.com/']
+}
+
+app.use(cors(corsOptions));
 app.use(express.json());
 
 
