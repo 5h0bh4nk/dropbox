@@ -51,7 +51,6 @@ export const listFiles = async (req, res, next) => {
 };
 
 export const downloadFile = async (req, res, next) => {
-    console.log(req.params)
     const params = {
         Bucket: process.env.AWS_BUCKET_NAME,
         Key: req.params.fileKey
@@ -60,8 +59,6 @@ export const downloadFile = async (req, res, next) => {
     try {
         const file = (await fileService.downloadFileFromS3(params));
         const fileDetails = await File.findOne({ key: req.params.fileKey });
-
-        console.log('file = ', file)
     
         res.setHeader("Content-Type", file.ContentType);
         res.setHeader("Content-Disposition", `attachment; filename=${fileDetails.filename}`);

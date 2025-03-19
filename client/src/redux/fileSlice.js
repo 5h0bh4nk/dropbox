@@ -3,7 +3,6 @@ import { getFiles } from "../api/fileService";
 
 export const fetchFiles = createAsyncThunk("files/fetch", async () => {
   const response = await getFiles();
-  console.log('fetched', response)
   return response.data;
 });
 
